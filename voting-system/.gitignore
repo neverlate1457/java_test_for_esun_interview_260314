@@ -1,0 +1,10 @@
+
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*-local.properties
+
+DB/test.sql
+frontend/node_modules/
+frontend/dist/
