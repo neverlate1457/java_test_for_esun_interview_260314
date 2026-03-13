@@ -57,6 +57,4 @@ public class VoteController {
             return ResponseEntity.status(500).body("刪除失敗：" + e.getMessage());
         }
     }
-    
-
 }

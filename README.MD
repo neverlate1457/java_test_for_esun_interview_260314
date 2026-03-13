@@ -47,7 +47,7 @@ voting-system/
 需先於 `backend/src/main/resources/application-local.properties` 設定您的資料庫連線資訊。
 ``` Bash
 cd backend
-./mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=local
+mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=local
 # API 預設運行於：http://localhost:8080
 ```
 

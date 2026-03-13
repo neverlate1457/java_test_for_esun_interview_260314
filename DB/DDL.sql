@@ -8,7 +8,6 @@ CREATE TABLE Vote_Items (
     updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- PostgreSQL 的註解需獨立撰寫
 COMMENT ON COLUMN Vote_Items.item_id IS '項目唯一識別碼';
 COMMENT ON COLUMN Vote_Items.is_deleted IS '軟刪除標記(0:正常, 1:刪除)';
 

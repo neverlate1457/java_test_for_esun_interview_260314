@@ -5,7 +5,14 @@
     </header>
 
     <main style="padding: 20px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px; background: white;">
-      <div v-if="items.length > 0">
+      <div v-if="loading">正在與資料庫連線中...</div>
+
+      <div v-else-if="items.length === 0">
+        <p>目前沒有任何投票項目。</p>
+      </div>
+
+    
+      <div v-else>
         <p style="text-align: left; color: #666;">請選擇您想投票的項目（可多選）：</p>
         
         <div v-for="item in items" :key="item.itemId" 
@@ -33,9 +40,7 @@
         </div>
       </div>
       
-      <div v-else style="padding: 40px;">
-        <p>正在從伺服器連線中...</p>
-      </div>
+     
     </main>
     
     <footer style="margin-top: 20px; font-size: 0.8em; color: #999;">
@@ -51,13 +56,17 @@ import axios from 'axios'
 const items = ref([])
 const selectedIds = ref([])
 const voterInfo = ref('')
+const loading = ref(true);
 
 const fetchItems = async () => {
   try {
+    loading.value = true;
     const res = await axios.get('http://localhost:8080/api/votes/items')
     items.value = res.data
   } catch (err) {
     alert('無法獲取資料，請檢查後端服務')
+  }finally {
+    loading.value = false;
   }
 }
 
