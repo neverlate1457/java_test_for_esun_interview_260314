@@ -46,3 +46,18 @@ BEGIN
     DELETE FROM Vote_Items WHERE item_id = p_item_id;
 END;
 $$;
+CREATE OR REPLACE PROCEDURE sp_update_vote_item(
+    p_item_id INT,
+    p_item_name VARCHAR,
+    p_description VARCHAR
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE "vote_items" 
+    SET item_name = p_item_name,
+        description = p_description,
+        updated_at = CURRENT_TIMESTAMP
+    WHERE item_id = p_item_id AND is_deleted = 0;
+END;
+$$;

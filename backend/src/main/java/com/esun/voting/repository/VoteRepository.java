@@ -2,11 +2,12 @@ package com.esun.voting.repository;
 
 import com.esun.voting.entity.VoteItemEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;    // 漏了這行
-import org.springframework.data.jpa.repository.Query;       // 漏了這行
+import org.springframework.data.jpa.repository.Modifying;    
+import org.springframework.data.jpa.repository.Query;     
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional; // 漏了這行
+import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.data.jpa.repository.query.Procedure;
 import java.util.List;
 
 @Repository
@@ -32,5 +33,12 @@ public interface VoteRepository extends JpaRepository<VoteItemEntity, Integer> {
     @Modifying
     @Query(value = "CALL sp_delete_vote_item(CAST(:p_item_id AS INTEGER))", nativeQuery = true)
     void callDeleteVoteItem(@Param("p_item_id") Integer itemId);
+
+    @Procedure(procedureName = "sp_update_vote_item")
+    void updateVoteItem(
+    @Param("p_item_id") Integer id, 
+    @Param("p_item_name") String name, 
+    @Param("p_description") String description
+    );
 
 }

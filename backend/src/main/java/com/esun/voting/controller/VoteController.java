@@ -1,11 +1,14 @@
 package com.esun.voting.controller;
 
+import com.esun.voting.dto.ApiResponse;
 import com.esun.voting.dto.VoteItemDTO;   // 確保這行存在
 import com.esun.voting.dto.VoteRequest;   // 確保這行存在
 import com.esun.voting.service.VoteService;
+import com.esun.voting.entity.VoteItemEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -56,5 +59,11 @@ public class VoteController {
             e.printStackTrace(); // 在 IntelliJ 控制台印出完整報錯，這很重要
             return ResponseEntity.status(500).body("刪除失敗：" + e.getMessage());
         }
+    }
+
+    @PutMapping("/items/{id}")
+    public ResponseEntity<?> updateItem(@PathVariable Integer id, @RequestBody VoteItemEntity item) {
+        voteService.updateItem(id, item);
+        return ResponseEntity.ok(new ApiResponse<>("更新成功", null));
     }
 }

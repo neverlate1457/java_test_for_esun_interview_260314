@@ -6,6 +6,7 @@ import com.esun.voting.dto.VoteItemDTO;
 import com.esun.voting.dto.VoteRequest;
 
 import com.esun.voting.repository.VoteRepository;
+import com.esun.voting.entity.VoteItemEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,6 +48,9 @@ public class VoteService {
     public void deleteItem(Integer itemId) {
     voteRepository.callDeleteVoteItem(itemId);
     }
-
-
+    @Transactional
+    public void updateItem(Integer id, VoteItemEntity item) {
+        
+        voteRepository.updateVoteItem(id, item.getItemName(), item.getDescription());
+}
 }
