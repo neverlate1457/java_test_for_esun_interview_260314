@@ -1,3 +1,7 @@
+
+DROP TABLE IF EXISTS Vote_Records;
+DROP TABLE IF EXISTS Vote_Items;
+
 -- 1. 建立投票項目表
 CREATE TABLE Vote_Items (
     item_id     SERIAL PRIMARY KEY,
