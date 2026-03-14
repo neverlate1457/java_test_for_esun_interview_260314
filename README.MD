@@ -1,4 +1,4 @@
-### 玉山銀行面試實作
+## 玉山銀行面試實作
 本專案為一個完整的前後端分離投票系統，具備後台管理項目與前台多選投票功能。系統設計遵循銀行業開發規範，強調資料一致性、安全性與模組化架構。
 
 ### 功能清單
@@ -69,7 +69,7 @@ cd backend
 mvnw.cmd spring-boot:run
 # API 預設運行於：http://localhost:8080
 ```
-~(optional)~ 
+**(optional)**
 複製`application.properties`並更名成`application-local.properties`，避免資料庫資訊流出
 
 ``` Bash
@@ -88,5 +88,4 @@ npm run dev
 # 前台投票：http://localhost:5173/
 # 管理後台：http://localhost:5173/admin
 ```
-
-有任何問題請聯繫[開發者](<github.com/neverlate1457/>)
+有任何問題請聯繫[開發者](<https://github.com/neverlate1457/>)
