@@ -7,18 +7,26 @@
 
 - 項目新增：提供介面供管理員新增投票選項及描述。
 
+- 編輯項目：透過 Modal 彈窗即時修改現有項目資訊。
+
 - 項目刪除：實作物理刪除功能，並透過預存程序確保連帶投票紀錄之資料完整性。
 2. 使用者投票介面
 - 即時票數統計：頁面動態顯示各項目最新的累積票數。
 
 - 多選投票功能：支援使用者單次勾選多個項目進行投票。
 ### 系統架構 
-專案採用 Web + Application + Database 的三層式架構，確保系統的高擴展性與安全性：
+專案採用標準的四層架構，確保系統的高擴展性與安全性：
 - 前端：Vue 3, Vue Router, Axios, Vite
+
 - 後端：Spring Boot 3, Spring Data JPA, Maven
     - 展示層：使用 Vue 3與 Vite 建構，負責使用者交互與資料呈現。
+
     - 業務層：使用 Spring Boot 3 與 Java 17，實現 RESTful API 與商業邏輯。
-    - 資料層：使用 PostgreSQL，核心邏輯封裝於 Stored Procedures 中，並透過 JPA 參數化查詢確保安全性。
+
+    - 資料存取層：利用 Spring Data JPA 結合 `@Procedure` 調用資料庫預存程序。
+
+    - 資料模型：統一使用 `ApiResponse<T>` 格式封裝回傳結果。
+
 - 資料庫環境：Postgres 
 
 

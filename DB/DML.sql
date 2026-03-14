@@ -35,14 +35,11 @@ BEGIN
     VALUES (p_item_name, p_description, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 END;
 $$;
--- 刪除投票項目的 Procedure
 CREATE OR REPLACE PROCEDURE sp_delete_vote_item(p_item_id INT)
 LANGUAGE plpgsql
 AS $$
 BEGIN
-    -- 同時刪除該項目的投票紀錄（避免外鍵衝突）
     DELETE FROM Vote_Records WHERE item_id = p_item_id;
-    -- 刪除項目本身
     DELETE FROM Vote_Items WHERE item_id = p_item_id;
 END;
 $$;
